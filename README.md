@@ -1,58 +1,43 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
-
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
-
-```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
-```
-
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# Abalo – Full-Stack Marketplace Prototype
+ 
+Abalo is a full-stack marketplace web application built as a team coursework project for the **Web Technologies (DBWT2)** course at **FH Aachen University of Applied Sciences**. The project was developed incrementally across five milestones, progressively adding backend structure, dynamic frontend behavior, and real-time features.
+ 
+## Tech Stack
+ 
+- **Backend:** Laravel (PHP), PostgreSQL, Eloquent ORM
+- **Frontend:** Vue.js (Single File Components), vanilla JavaScript, AJAX
+- **Styling:** Sass, BEM methodology
+- **Real-time:** WebSockets via Laravel Reverb
+- **Tooling:** NPM, Vite, Composer
+## Features
+ 
+### Backend & Database
+- Relational PostgreSQL schema managed through Laravel migrations, covering users, articles, hierarchical article categories (self-referencing parent/child structure), and shopping carts
+- Data seeding from CSV sources using custom Laravel seeders
+- Factory-generated bulk data (10,000+ users) for performance testing
+- REST API endpoints for articles and shopping cart management:
+  - `GET /api/articles?search=` – search articles by name
+  - `POST /api/articles` – create a new article (with server-side validation)
+  - `DELETE /api/articles/{id}` – delete an article
+  - `POST /api/shoppingcart` – add an article to the cart
+  - `DELETE /api/shoppingcart/{id}/articles/{articleId}` – remove an article from the cart
+### Frontend
+- Article listing and search, initially implemented in vanilla JavaScript, then upgraded to AJAX, and finally rebuilt with Vue.js for live, debounced search
+- Client-side shopping cart with add/remove functionality, later connected to persistent server-side storage
+- Dynamic navigation menu built in JavaScript, later refactored into an encapsulated object
+- Article submission form with client- and server-side validation
+- Cookie consent banner (GDPR-compliant), implemented without local storage
+- Server-side pagination (`LIMIT`/`OFFSET`) for article listings
+- Modular Vue architecture using Single File Components (`siteheader`, `sitebody`, `sitefooter`)
+- Component styling with Sass and the BEM naming methodology
+### Real-Time Features
+- WebSocket integration via Laravel Reverb
+- Broadcast notifications sent to all connected users (e.g. maintenance announcements)
+- Targeted notifications sent to a specific user (e.g. "your article has been sold")
+## Project Structure
+ 
+The project follows a standard Laravel application structure, with Vue components under `resources/js` and views under `resources/views`.
+ 
+## Context
+ 
+This project was developed collaboratively as part of a university team assignment. It is a learning prototype rather than a production-ready application, built to practice full-stack web development concepts including relational database design, RESTful API design, progressive frontend enhancement, and real-time communication.
